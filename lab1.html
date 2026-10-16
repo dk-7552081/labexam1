@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login and Signup</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .box {
+            border: 1px solid gray;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Sign Up / Login</h2>
+
+        <input type="email" id="email" placeholder="Enter Email">
+        <br>
+
+        <input type="password" id="pass" placeholder="Enter Password">
+        <br>
+
+        <button onclick="signUp()">Sign Up</button>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function signUp() {
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+
+            if (email === "" || pass === "") {
+                alert("Please enter email and password");
+                return;
+            }
+
+            localStorage.setItem("email", email);
+            localStorage.setItem("pass", pass);
+
+            alert("Signup successful!");
+        }
+
+        function login() {
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+
+            let savedEmail = localStorage.getItem("email");
+            let savedPass = localStorage.getItem("pass");
+
+            if (email === savedEmail && pass === savedPass
+                && savedEmail !== null) {
+                alert("Login successful!");
+            } else {
+                alert("Invalid email or password");
+            }
+        }
+    </script>
+
+</body>
+</html>
